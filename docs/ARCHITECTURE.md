@@ -42,8 +42,8 @@ The project has no client or server, so a `frontend/` and `backend/` split does 
 
 | Function                           | Time                  | Space    | Notes                                   |
 | ---------------------------------- | --------------------- | -------- | --------------------------------------- |
-| `arrayFromRange`                   | O(n)                  | O(n)     | n is the range length                   |
-| `except`                           | O(n + m) average      | O(m)     | Hash set instead of a nested scan       |
+| `arrayFromRange`                   | O(n)                  | O(n)     | n is at most 1,000,000                  |
+| `except`                           | O(n + m) average      | O(n + m) | Hash set instead of a nested scan       |
 | `move`                             | O(n)                  | O(n)     | Returns a copy                          |
 | `sumOfMultiples`                   | O(1) arithmetic steps | O(1)     | Inclusion-exclusion over 3, 5, and 15   |
 | `isPrime`                          | O(√n)                 | O(1)     | Tests 6k±1 candidates only              |
@@ -60,7 +60,7 @@ The project has no client or server, so a `frontend/` and `backend/` split does 
 
 **Miller-Rabin.** The first 13 prime bases are deterministic below 3,317,044,064,679,887,385,961,981. `isPrimeBigInt` throws at or above that bound rather than returning a probabilistic answer.
 
-**Random generation.** xoshiro128\*\* has period 2¹²⁸ − 1. A 32-bit seed is expanded to four state words by running a golden-ratio counter through the MurmurHash3 finalizer. That finalizer is a bijection and the four counter values are distinct, so the state can never be all zero. Only 2³² of the possible streams are reachable from a seed. The output matches the reference sequence for state `[1, 2, 3, 4]`, which was also cross-checked against a separate Python implementation.
+**Random generation.** xoshiro128\*\* has period 2¹²⁸ − 1. A 32-bit seed is expanded to four state words by running a golden-ratio counter through the MurmurHash3 finalizer. That finalizer is a bijection and the four counter values are distinct, so the state can never be all zero. Only 2³² of the possible streams are reachable from a seed. The test suite pins the first ten outputs for state `[1, 2, 3, 4]`.
 
 **Unbiased bounds.** `nextBelow` rejects draws below `2³² mod bound`, removing modulo bias.
 
@@ -68,7 +68,7 @@ The project has no client or server, so a `frontend/` and `backend/` split does 
 
 ## Reproducibility
 
-The same seed and parameters produce identical CLI output. Property tests use a fixed fast-check seed, and statistical tests use fixed generator seeds, so a failure is reproducible rather than intermittent. Because those seeds are fixed, passing tests show the implementation is consistent with uniformity for those streams; they are not a full randomness battery such as TestU01.
+The same seed and parameters produce identical CLI output on the same code and Node.js version. Property tests use a fixed fast-check seed, and statistical tests use fixed generator seeds, so a failure is reproducible rather than intermittent. Because those seeds are fixed, passing tests show the implementation is consistent with uniformity for those streams; they are not a full randomness battery such as TestU01.
 
 ## Recommended evolution
 

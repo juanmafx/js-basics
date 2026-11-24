@@ -2,7 +2,7 @@
 
 A tested JavaScript fundamentals library: classic language exercises rebuilt as validated ES modules, extended with number theory, a seeded random number generator, and statistical testing.
 
-> **Project history:** originally created in 2019 as a set of course exercises, modernized in 2026.
+> **Project history:** originally created in 2019 as a set of JavaScript study exercises, modernized in 2026.
 
 ## Purpose
 
@@ -60,7 +60,7 @@ node bin/js-basics.js run uniformity --seed 42 --samples 100000 --buckets 16
 node bin/js-basics.js run prime-density --limit 1000000
 ```
 
-Output is JSON. Runs contain no timestamps, so the same arguments on the same code produce identical output. Invalid arguments exit with code `2`.
+The `run` command prints JSON. Runs contain no timestamps, so the same arguments on the same code and Node.js version produce identical output. Invalid or unused arguments exit with code `2`.
 
 ## Configuration
 
@@ -75,11 +75,13 @@ There are no environment variables or configuration files. Experiments are contr
 
 ## Database schema (optional)
 
-The library does not use a database and works without one. [db/schema.sql](db/schema.sql) is an optional schema for anyone who wants to archive experiment runs. It is exercised against SQLite by the test suite and uses portable SQL types, but it has not been run against another database engine.
+The library does not use a database and works without one. [db/schema.sql](db/schema.sql) is an optional schema for anyone who wants to archive experiment runs. It is exercised against SQLite by the test suite and has not been run against another database engine.
 
 ```bash
 sqlite3 runs.db < db/schema.sql
 ```
+
+SQLite enforces the schema's foreign keys and cascades only on connections that first run `PRAGMA foreign_keys = ON`.
 
 ## Testing
 

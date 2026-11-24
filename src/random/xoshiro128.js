@@ -68,6 +68,9 @@ export function createRandom(seed) {
 
 export function shuffle(array, random) {
   assertArray(array);
+  if (typeof random?.nextBelow !== 'function') {
+    throw new TypeError('random must provide nextBelow.');
+  }
   const output = [...array];
   for (let last = output.length - 1; last > 0; last--) {
     const pick = random.nextBelow(last + 1);

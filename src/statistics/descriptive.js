@@ -1,4 +1,4 @@
-import { assertArray, assertFiniteNumber } from '../core/validation.js';
+import { assertArray, assertFiniteNumber, assertFiniteResult } from '../core/validation.js';
 
 export function compensatedSum(values) {
   assertArray(values, 'values');
@@ -7,6 +7,7 @@ export function compensatedSum(values) {
   for (const value of values) {
     assertFiniteNumber(value, 'value');
     const next = total + value;
+    assertFiniteResult(next, 'sum');
     compensation +=
       Math.abs(total) >= Math.abs(value) ? total - next + value : value - next + total;
     total = next;
@@ -25,11 +26,13 @@ export function sampleVariance(values) {
   if (values.length < 2) throw new RangeError('values must hold at least two items.');
   let runningMean = 0;
   let squaredDeviations = 0;
-  values.forEach((value, index) => {
+  for (const [index, value] of values.entries()) {
     assertFiniteNumber(value, 'value');
     const delta = value - runningMean;
     runningMean += delta / (index + 1);
     squaredDeviations += delta * (value - runningMean);
-  });
-  return squaredDeviations / (values.length - 1);
+  }
+  const variance = squaredDeviations / (values.length - 1);
+  assertFiniteResult(variance, 'variance');
+  return variance;
 }

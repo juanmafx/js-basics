@@ -1,4 +1,9 @@
-import { assertArray, assertFiniteNumber, assertIntegerInRange } from '../core/validation.js';
+import {
+  assertArray,
+  assertFiniteNumber,
+  assertFiniteResult,
+  assertIntegerInRange,
+} from '../core/validation.js';
 
 const SPEED_LIMIT = 70;
 const KM_PER_POINT = 5;
@@ -7,6 +12,8 @@ const MAX_LISTING = 1_000_000;
 const MAX_STAR_ROWS = 1_000;
 
 export function max(a, b) {
+  assertFiniteNumber(a, 'a');
+  assertFiniteNumber(b, 'b');
   return a > b ? a : b;
 }
 
@@ -70,6 +77,7 @@ export function calculateAverage(values) {
     assertFiniteNumber(value, 'value');
     total += value;
   }
+  assertFiniteResult(total, 'sum');
   return total / values.length;
 }
 

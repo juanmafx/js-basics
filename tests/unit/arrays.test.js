@@ -21,6 +21,12 @@ describe('array operations', () => {
     assert.throws(() => arrayFromRange(0.5, 2), TypeError);
   });
 
+  it('caps the range length', () => {
+    assert.equal(arrayFromRange(1, 1_000_000).length, 1_000_000);
+    assert.throws(() => arrayFromRange(0, 1_000_000), RangeError);
+    assert.throws(() => arrayFromRange(0, 4_000_000_000), RangeError);
+  });
+
   it('finds elements with strict equality', () => {
     assert.equal(includes([1, 2, 3], 2), true);
     assert.equal(includes([1, 2, 3], '2'), false);
@@ -51,6 +57,17 @@ describe('array operations', () => {
   it('returns the maximum or undefined when empty', () => {
     assert.equal(getMax([1, 9, 3]), 9);
     assert.equal(getMax([]), undefined);
+  });
+
+  it('rejects non-finite and non-numeric items when finding the maximum', () => {
+    for (const values of [
+      [Number.NaN, 1],
+      [1, Number.NaN],
+      [1, '9'],
+      [1, Infinity],
+    ]) {
+      assert.throws(() => getMax(values), TypeError);
+    }
   });
 
   it('finds records by name', () => {

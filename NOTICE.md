@@ -12,3 +12,4 @@ Published algorithms implemented here:
 - Fisher-Yates shuffle, in the Durstenfeld form
 - Welford's online variance and Neumaier's compensated summation
 - The Lanczos approximation of the gamma function
+- The modified Lentz algorithm for continued fractions

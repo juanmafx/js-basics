@@ -88,6 +88,7 @@ export function chiSquareUniformity(observed) {
     total += count;
   }
   if (total === 0) throw new RangeError('observed must hold at least one sample.');
+  if (!Number.isSafeInteger(total)) throw new RangeError('observed total is too large.');
   const expected = total / observed.length;
   const statistic = observed.reduce((acc, count) => acc + (count - expected) ** 2 / expected, 0);
   const degreesOfFreedom = observed.length - 1;

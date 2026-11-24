@@ -8,6 +8,10 @@ export function assertFiniteNumber(value, name = 'value') {
   }
 }
 
+export function assertFiniteResult(value, name = 'result') {
+  if (!Number.isFinite(value)) throw new RangeError(`${name} exceeds the floating-point range.`);
+}
+
 export function assertSafeInteger(value, name = 'value') {
   if (!Number.isSafeInteger(value)) throw new TypeError(`${name} must be a safe integer.`);
 }

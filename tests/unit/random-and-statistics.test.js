@@ -52,6 +52,11 @@ describe('xoshiro128**', () => {
     assert.throws(() => createRandom(1).nextBelow(0), RangeError);
   });
 
+  it('requires a generator to shuffle', () => {
+    assert.throws(() => shuffle([1], undefined), TypeError);
+    assert.throws(() => shuffle([1, 2], {}), TypeError);
+  });
+
   it('shuffles without mutating the input', () => {
     const input = [1, 2, 3, 4, 5];
     const output = shuffle(input, createRandom(3));
@@ -76,6 +81,18 @@ describe('descriptive statistics', () => {
   it('rejects undersized input', () => {
     assert.throws(() => mean([]), RangeError);
     assert.throws(() => sampleVariance([1]), RangeError);
+  });
+
+  it('rejects overflow instead of returning a non-finite result', () => {
+    assert.throws(() => compensatedSum([1e308, 1e308]), RangeError);
+    assert.throws(() => mean([1e308, 1e308]), RangeError);
+    assert.throws(() => sampleVariance([1e308, -1e308]), RangeError);
+  });
+
+  it('rejects sparse arrays in variance', () => {
+    const sparse = [1, 2, 3];
+    delete sparse[1];
+    assert.throws(() => sampleVariance(sparse), TypeError);
   });
 });
 
@@ -115,5 +132,9 @@ describe('chi-square', () => {
     assert.throws(() => chiSquareUniformity([1]), RangeError);
     assert.throws(() => chiSquareUniformity([0, 0]), RangeError);
     assert.throws(() => chiSquareUniformity([1, -1]), RangeError);
+    assert.throws(
+      () => chiSquareUniformity([Number.MAX_SAFE_INTEGER, Number.MAX_SAFE_INTEGER]),
+      RangeError,
+    );
   });
 });

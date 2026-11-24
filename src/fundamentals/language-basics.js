@@ -1,4 +1,4 @@
-import { assertFiniteNumber } from '../core/validation.js';
+import { assertFiniteNumber, assertFiniteResult } from '../core/validation.js';
 
 const GOLD_THRESHOLD = 100;
 
@@ -16,7 +16,9 @@ export function greet(name) {
 
 export function square(value) {
   assertFiniteNumber(value);
-  return value * value;
+  const squared = value * value;
+  assertFiniteResult(squared, 'square');
+  return squared;
 }
 
 export function ownEntries(object) {

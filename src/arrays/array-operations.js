@@ -1,9 +1,19 @@
-import { assertArray, assertIntegerInRange, assertSafeInteger } from '../core/validation.js';
+import {
+  assertArray,
+  assertFiniteNumber,
+  assertIntegerInRange,
+  assertSafeInteger,
+} from '../core/validation.js';
+
+const MAX_RANGE_LENGTH = 1_000_000;
 
 export function arrayFromRange(min, max) {
   assertSafeInteger(min, 'min');
   assertSafeInteger(max, 'max');
   if (max < min) return [];
+  if (max - min >= MAX_RANGE_LENGTH) {
+    throw new RangeError(`The range must not exceed ${MAX_RANGE_LENGTH} items.`);
+  }
   return Array.from({ length: max - min + 1 }, (_, offset) => min + offset);
 }
 
@@ -43,6 +53,7 @@ export function countOccurrences(array, searchElement) {
 
 export function getMax(array) {
   assertArray(array);
+  for (const value of array) assertFiniteNumber(value, 'item');
   if (array.length === 0) return undefined;
   return array.reduce((largest, current) => (largest > current ? largest : current));
 }

@@ -9,6 +9,10 @@ const USAGE = [
 
 const NUMERIC_OPTIONS = ['seed', 'samples', 'buckets', 'limit'];
 
+function toPrintable(text) {
+  return text.replace(/[\p{Cc}\p{Cf}]/gu, '?');
+}
+
 function parseNumericOptions(values, allowed) {
   const parsed = {};
   for (const name of NUMERIC_OPTIONS) {
@@ -38,12 +42,18 @@ export function runCli(argv, io) {
     });
     const [command, name] = positionals;
     if (command === 'list') {
+      if (positionals.length > 1 || Object.keys(values).length > 0) {
+        throw new RangeError('The list command takes no arguments.');
+      }
       for (const [key, { description }] of Object.entries(experiments)) {
         io.stdout(`${key}: ${description}`);
       }
       return 0;
     }
     if (command === 'run') {
+      if (positionals.length > 2) {
+        throw new RangeError('The run command takes a single experiment name.');
+      }
       runExperiment(name, values, io);
       return 0;
     }
@@ -51,7 +61,7 @@ export function runCli(argv, io) {
     return 2;
   } catch (error) {
     if (error instanceof RangeError || error instanceof TypeError) {
-      io.stderr(error.message);
+      io.stderr(toPrintable(error.message));
       return 2;
     }
     throw error;

@@ -21,6 +21,9 @@ describe('control flow exercises', () => {
     assert.equal(isLandscape(800, 700), true);
     assert.equal(isLandscape(300, 600), false);
     assert.throws(() => isLandscape('a', 1), TypeError);
+    assert.throws(() => max(Number.NaN, 1), TypeError);
+    assert.throws(() => max(1, Number.NaN), TypeError);
+    assert.throws(() => max('a', 1), TypeError);
   });
 
   it('classifies FizzBuzz inputs', () => {
@@ -73,6 +76,7 @@ describe('control flow exercises', () => {
     assert.throws(() => calculateGrade([]), RangeError);
     assert.throws(() => calculateGrade([101]), RangeError);
     assert.throws(() => calculateAverage([]), RangeError);
+    assert.throws(() => calculateAverage([1e308, 1e308]), RangeError);
   });
 
   it('scores speed', () => {

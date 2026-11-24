@@ -19,6 +19,8 @@ describe('functions', () => {
     assert.equal(sum([1, 2, 3, 4]), 10);
     assert.equal(sum(), 0);
     assert.throws(() => sum(1, 'a'), TypeError);
+    assert.throws(() => sum(1e308, 1e308), RangeError);
+    assert.throws(() => sum(new Array(2)), TypeError);
   });
 
   it('computes a read-only circle area', () => {
@@ -26,6 +28,7 @@ describe('functions', () => {
     assert.equal(circle.area, Math.PI * 4);
     assert.ok(Object.isFrozen(circle));
     assert.throws(() => createCircle(-1), RangeError);
+    assert.throws(() => createCircle(1e200), RangeError);
   });
 });
 
@@ -42,6 +45,7 @@ describe('language basics', () => {
 
   it('squares values and lists entries', () => {
     assert.equal(square(-3), 9);
+    assert.throws(() => square(1e200), RangeError);
     assert.deepEqual(ownEntries({ a: 1 }), [['a', 1]]);
     assert.throws(() => ownEntries(null), TypeError);
   });

@@ -21,6 +21,11 @@ This project follows [Semantic Versioning](https://semver.org/). The 2019 code w
 - `countOccurrences` no longer logs on every iteration.
 - Property listing no longer includes inherited properties.
 - `move` now rejects an out-of-range source index.
+- `max` and `getMax` returned order-dependent results for `NaN`; they now reject non-finite and non-numeric input.
+- `sum`, `square`, `createCircle`, `calculateAverage`, `compensatedSum`, `mean`, and `sampleVariance` throw `RangeError` on floating-point overflow instead of returning `NaN` or an infinity.
+- `sum` and `sampleVariance` no longer skip holes in sparse arrays.
+- `chiSquareUniformity` rejects totals beyond the safe integer range, and `shuffle` rejects a missing generator.
+- The CLI rejects unused arguments.
 
 ### Added
 
@@ -40,3 +45,5 @@ This project follows [Semantic Versioning](https://semver.org/). The 2019 code w
 
 - Removed the outdated moment.js CDN script.
 - Untracked `.DS_Store` files.
+- Capped `arrayFromRange` at 1,000,000 items; a large span previously aborted the process.
+- CLI error output replaces control and format characters, preventing terminal escape injection.

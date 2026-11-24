@@ -2,7 +2,7 @@
 
 **Status:** prepared, not tagged or published.
 
-This release rebuilds a 2019 set of JavaScript course exercises as a tested, dependency-free ES module library, and adds number theory, seeded randomness, and statistical testing.
+This release rebuilds a 2019 set of JavaScript study exercises as a tested, dependency-free ES module library, and adds number theory, seeded randomness, and statistical testing.
 
 ## Highlights
 

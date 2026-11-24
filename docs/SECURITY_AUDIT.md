@@ -9,10 +9,13 @@
 | JSB-01 | Medium   | `index.html` loaded moment.js 2.18.1, which is affected by CVE-2017-18214, CVE-2022-24785, and CVE-2022-31129 | Fixed: the page and script were removed; nothing used them     |
 | JSB-02 | Medium   | The same script came from a third-party CDN with no Subresource Integrity hash                                | Fixed: no remote scripts remain                                |
 | JSB-03 | Low      | `.DS_Store` metadata files were tracked                                                                       | Fixed in the tree and ignored; the old blobs remain in history |
-| JSB-04 | Low      | Invalid input produced wrong results, such as an `A` for an empty grade list                                  | Fixed: public functions validate input                         |
+| JSB-04 | Low      | Invalid input produced wrong results, such as an `A` for an empty grade list                                  | Fixed: invalid input throws or has a tested result             |
 | JSB-05 | Low      | `for...in` iteration included inherited properties                                                            | Fixed: uses `Object.entries`                                   |
-| JSB-06 | Info     | Unbounded loop and allocation sizes                                                                           | Fixed: sieve, listing, and experiment inputs are capped        |
+| JSB-06 | Medium   | Unbounded allocation: `arrayFromRange(0, 4e9)` aborted the process with an out-of-memory error                | Fixed: sieve, range, listing, and experiment inputs are capped |
 | JSB-07 | Info     | The CLI resolves experiment names from user input                                                             | Fixed: own-property lookup rejects names such as `constructor` |
+| JSB-08 | Low      | CLI errors echoed control characters from arguments, allowing terminal escape injection                       | Fixed: control and format characters are replaced              |
+| JSB-09 | Low      | The CLI ignored unused arguments and exited with code 0                                                       | Fixed: unused arguments exit with code 2                       |
+| JSB-10 | Low      | Non-finite input and floating-point overflow produced `NaN` or order-dependent results                        | Fixed: affected functions throw                                |
 
 ## Checks performed
 
@@ -20,13 +23,14 @@
 | -------------------------------------------------------------------------- | ------------------------------------------------- |
 | `eval`, `new Function`, `innerHTML`, `document.write` in `src/` and `bin/` | None                                              |
 | Secret-pattern scan of full history, excluding `.DS_Store` binaries        | No matches                                        |
+| `gitleaks` 8.30.1 with `--redact` on all local refs and the working tree   | No leaks found                                    |
 | `npm audit`                                                                | 0 vulnerabilities at the time of the audit        |
 | Runtime dependencies                                                       | None                                              |
 | CI permissions                                                             | `contents: read`, actions pinned to commit hashes |
 
 ## Not applicable
 
-The project has no authentication, sessions, forms, database access at runtime, or server, so CSRF, SQL injection, XSS, and password hashing have no attack surface here.
+The project has no authentication, sessions, forms, database access at runtime, or server, so CSRF, SQL injection, XSS, two-factor authentication, and password hashing have no attack surface here. It implements no cryptography, and its generator must not be used for security purposes.
 
 ## Open items
 

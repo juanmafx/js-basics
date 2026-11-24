@@ -44,8 +44,19 @@ describe('command line interface', () => {
       ['run', 'uniformity', '--limit', '10'],
       ['run', 'uniformity', '--nope', '1'],
       ['run', 'prime-density', '--limit', '999999999999'],
+      ['list', 'extra'],
+      ['list', '--seed', '1'],
+      ['run', 'uniformity', 'extra'],
     ]) {
       assert.equal(capture(argv).code, 2, argv.join(' '));
+    }
+  });
+
+  it('strips control and format characters from error output', () => {
+    for (const argv of [['run', 'bad\u001b[2Jname'], ['--bad\u001b[2Jname'], ['run', 'a\u202eb']]) {
+      const { code, err } = capture(argv);
+      assert.equal(code, 2);
+      assert.doesNotMatch(err, /[\p{Cc}\p{Cf}]/u);
     }
   });
 
