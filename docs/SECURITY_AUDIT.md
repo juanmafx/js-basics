@@ -8,7 +8,7 @@
 | ------ | -------- | ------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
 | JSB-01 | Medium   | `index.html` loaded moment.js 2.18.1, which is affected by CVE-2017-18214, CVE-2022-24785, and CVE-2022-31129 | Fixed: the page and script were removed; nothing used them     |
 | JSB-02 | Medium   | The same script came from a third-party CDN with no Subresource Integrity hash                                | Fixed: no remote scripts remain                                |
-| JSB-03 | Low      | `.DS_Store` metadata files were tracked                                                                       | Fixed in the tree and ignored; the old blobs remain in history |
+| JSB-03 | Low      | `.DS_Store` metadata files were tracked                                                                       | Fixed: removed and ignored; history rewritten on 2026-11-24    |
 | JSB-04 | Low      | Invalid input produced wrong results, such as an `A` for an empty grade list                                  | Fixed: invalid input throws or has a tested result             |
 | JSB-05 | Low      | `for...in` iteration included inherited properties                                                            | Fixed: uses `Object.entries`                                   |
 | JSB-06 | Medium   | Unbounded allocation: `arrayFromRange(0, 4e9)` aborted the process with an out-of-memory error                | Fixed: sieve, range, listing, and experiment inputs are capped |
@@ -32,7 +32,10 @@
 
 The project has no authentication, sessions, forms, database access at runtime, or server, so CSRF, SQL injection, XSS, two-factor authentication, and password hashing have no attack surface here. It implements no cryptography, and its generator must not be used for security purposes.
 
+## Resolved after the audit
+
+- JSB-03: on 2026-11-24 the public history was rewritten so that only the 2026 modernization commits remain, so the `.DS_Store` blobs are no longer in any branch or tag. Their readable strings were only local folder names, and no sensitive data was found. GitHub may still serve old commits by direct commit hash until it purges unreferenced objects, so treat anything that was ever published in the old history as compromised.
+
 ## Open items
 
-- JSB-03: the `.DS_Store` blobs remain in git history because history was not rewritten. Their readable strings are only local folder names, and no sensitive data was found.
 - The repository has no license. This is a legal matter rather than a vulnerability and needs an owner decision.

@@ -1,6 +1,6 @@
 {
   "name": "js-basics",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Tested JavaScript fundamentals exercises extended with number theory, seeded randomness, and statistics.",
   "private": true,
   "license": "UNLICENSED",

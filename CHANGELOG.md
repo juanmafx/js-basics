@@ -2,7 +2,13 @@
 
 This project follows [Semantic Versioning](https://semver.org/). The 2019 code was never versioned or tagged and is treated as 1.x.
 
-## [2.0.0] - Unreleased
+## [2.0.1] - 2026-11-24
+
+### Changed
+
+- Documentation corrections only, with no change in code behaviour. Release notes, changelog and security audit now reflect the published 2.0.0 release and the 2026-11-24 history rewrite.
+
+## [2.0.0] - 2026-11-24
 
 ### Breaking
 

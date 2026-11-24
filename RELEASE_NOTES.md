@@ -1,19 +1,15 @@
-# js-basics 2.0.0 Release Notes
+# js-basics 2.0.1 Release Notes
 
-**Status:** prepared, not tagged or published.
+Version 2.0.1 is a documentation release. It does not change code behaviour.
 
-This release rebuilds a 2019 set of JavaScript study exercises as a tested, dependency-free ES module library, and adds number theory, seeded randomness, and statistical testing.
+## Changes
 
-## Highlights
-
-- Pure functions with defined behavior for invalid input.
-- Deterministic Miller-Rabin up to about 3.3 × 10²⁴.
-- Reproducible experiments from a single seed.
-- Unit, property-based, statistical, and integration tests. Results are in `reports/tests/`.
+- The changelog marks 2.0.0 as released on 2026-11-24.
+- The security audit marks JSB-03 resolved. On 2026-11-24 the public history was rewritten so that only the 2026 modernization commits remain, and the old `.DS_Store` blobs are no longer in any branch or tag. Anything that was ever published in the old history should still be treated as compromised.
 
 ## Upgrade notes
 
-The original files were standalone scripts, so there is no compatible upgrade path. See the migration table in `docs/ARCHITECTURE.md`. Node.js 22.13 or newer is required.
+No action is needed when upgrading from 2.0.0. Node.js 22.13 or newer is still required.
 
 ## Known limitations
 
