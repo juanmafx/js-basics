@@ -1,0 +1,145 @@
+▶ command line interface
+  ✔ lists experiments (5.311899ms)
+  ✔ produces byte-identical output for the same seed (21.038997ms)
+  ✔ reports prime density (1.4979ms)
+  ✔ rejects invalid usage with exit code two (1.382014ms)
+  ✔ runs through the executable entry point (169.438306ms)
+  ✔ validates experiment parameters (1.486365ms)
+✔ command line interface (204.828726ms)
+▶ optional results schema
+  ✔ stores a successful run and cascades metrics (1.918046ms)
+  ✔ enforces domain constraints (1.024859ms)
+  ✔ enforces the experiment foreign key (0.47352ms)
+✔ optional results schema (8.230312ms)
+▶ array properties
+  ✔ range length equals the span (53.736589ms)
+  ✔ move is a permutation that places the element at the target (58.301151ms)
+  ✔ except leaves no excluded values and keeps the rest (20.343039ms)
+  ✔ occurrence counts partition the array (18.04627ms)
+  ✔ max dominates every element (14.805717ms)
+✔ array properties (169.361025ms)
+▶ arithmetic properties
+  ✔ closed-form multiples agree with enumeration (83.957855ms)
+  ✔ FizzBuzz has period fifteen on labels (9.687872ms)
+  ✔ grant then revoke clears the permission (6.239177ms)
+  ✔ variance is non-negative and shift invariant (17.362418ms)
+  ✔ mean lies between the extremes (15.999568ms)
+✔ arithmetic properties (133.947943ms)
+▶ prime properties
+  ✔ trial division agrees with a naive oracle (6.562931ms)
+  ✔ Miller-Rabin agrees with trial division (12.433145ms)
+  ✔ the sieve agrees with trial division (39.15113ms)
+✔ prime properties (58.542775ms)
+▶ random properties
+  ✔ nextBelow stays in range (11.707979ms)
+  ✔ nextFloat stays in the unit interval (9.73957ms)
+  ✔ shuffle is a permutation (15.890646ms)
+✔ random properties (37.714056ms)
+▶ seeded statistical checks
+  ✔ nextBelow is uniform across fixed seeds (322.441477ms)
+  ✔ the test detects a biased source (28.504939ms)
+  ✔ nextFloat matches uniform mean and variance (147.202498ms)
+  ✔ Fisher-Yates produces every permutation of four items uniformly (334.781707ms)
+✔ seeded statistical checks (836.476946ms)
+▶ array operations
+  ✔ builds inclusive ranges (6.584009ms)
+  ✔ rejects non-integer range bounds (1.275293ms)
+  ✔ finds elements with strict equality (3.824067ms)
+  ✔ excludes values (0.54323ms)
+  ✔ moves an element without mutating the input (0.752227ms)
+  ✔ throws on an invalid move (1.242566ms)
+  ✔ counts occurrences and rejects non-arrays (0.504427ms)
+  ✔ returns the maximum or undefined when empty (0.881503ms)
+  ✔ finds records by name (1.530953ms)
+✔ array operations (24.323159ms)
+▶ control flow exercises
+  ✔ compares values (5.882136ms)
+  ✔ classifies FizzBuzz inputs (0.573555ms)
+  ✔ labels parity (6.139457ms)
+  ✔ counts truthy values (0.67509ms)
+  ✔ lists own string properties only (0.591828ms)
+  ✔ sums multiples of three or five (1.069866ms)
+  ✔ assigns grades on each boundary (0.96462ms)
+  ✔ rejects empty and out-of-range marks instead of returning A (0.499985ms)
+  ✔ scores speed (2.654953ms)
+  ✔ renders star rows (0.745212ms)
+✔ control flow exercises (24.546515ms)
+▶ functions
+  ✔ sums variadic and array arguments (3.587649ms)
+  ✔ computes a read-only circle area (0.984736ms)
+✔ functions (8.414047ms)
+▶ language basics
+  ✔ derives a membership tier (0.779531ms)
+  ✔ greets by name (0.409217ms)
+  ✔ squares values and lists entries (3.018501ms)
+  ✔ manipulates permission bit flags (1.239359ms)
+✔ language basics (6.156871ms)
+▶ primes
+  ✔ treats values below two as non-prime (2.980624ms)
+  ✔ classifies known values (2.277084ms)
+  ✔ matches published prime counts (70.614703ms)
+  ✔ handles small sieve limits (3.682981ms)
+  ✔ rejects known strong pseudoprimes (3.613616ms)
+  ✔ accepts large known primes (1.132705ms)
+  ✔ refuses to answer beyond the deterministic bound (0.411979ms)
+✔ primes (91.184882ms)
+▶ xoshiro128**
+  ✔ reproduces the reference sequence for state 1, 2, 3, 4 (7.062086ms)
+  ✔ rejects invalid state and seeds (1.483089ms)
+  ✔ is deterministic per seed (1.041585ms)
+  ✔ rejects an invalid bound (0.449736ms)
+  ✔ shuffles without mutating the input (0.50086ms)
+✔ xoshiro128** (14.863288ms)
+▶ descriptive statistics
+  ✔ keeps precision where naive summation loses it (0.721208ms)
+  ✔ computes mean and sample variance (0.741311ms)
+  ✔ rejects undersized input (0.367344ms)
+✔ descriptive statistics (2.232549ms)
+▶ chi-square
+  ✔ computes log gamma for known values (1.059715ms)
+  ✔ matches published critical values at the 5 percent level (0.558494ms)
+  ✔ matches the closed form for two degrees of freedom (0.460667ms)
+  ✔ handles the incomplete gamma domain (0.464839ms)
+  ✔ scores a uniformity table (0.472965ms)
+  ✔ rejects invalid tables (0.485768ms)
+✔ chi-square (4.237589ms)
+ℹ tests 75
+ℹ suites 15
+ℹ pass 75
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1051.097283
+ℹ start of coverage report
+ℹ ------------------------------------------------------------------------
+ℹ file                    | line % | branch % | funcs % | uncovered lines
+ℹ ------------------------------------------------------------------------
+ℹ src                     |        |          |         | 
+ℹ  arrays                 |        |          |         | 
+ℹ   array-operations.js   | 100.00 |   100.00 |  100.00 | 
+ℹ  cli                    |        |          |         | 
+ℹ   main.js               |  96.61 |    96.00 |  100.00 | 57-58
+ℹ  control-flow           |        |          |         | 
+ℹ   exercises.js          | 100.00 |   100.00 |  100.00 | 
+ℹ  core                   |        |          |         | 
+ℹ   validation.js         | 100.00 |   100.00 |  100.00 | 
+ℹ  experiments            |        |          |         | 
+ℹ   registry.js           | 100.00 |   100.00 |  100.00 | 
+ℹ  functions              |        |          |         | 
+ℹ   function-exercises.js | 100.00 |   100.00 |  100.00 | 
+ℹ  fundamentals           |        |          |         | 
+ℹ   language-basics.js    | 100.00 |   100.00 |  100.00 | 
+ℹ   permissions.js        | 100.00 |   100.00 |  100.00 | 
+ℹ  index.js               | 100.00 |   100.00 |  100.00 | 
+ℹ  number-theory          |        |          |         | 
+ℹ   primes.js             | 100.00 |   100.00 |  100.00 | 
+ℹ  random                 |        |          |         | 
+ℹ   xoshiro128.js         | 100.00 |   100.00 |  100.00 | 
+ℹ  statistics             |        |          |         | 
+ℹ   chi-square.js         |  97.89 |    89.74 |  100.00 | 38 60
+ℹ   descriptive.js        | 100.00 |   100.00 |  100.00 | 
+ℹ ------------------------------------------------------------------------
+ℹ all files               |  99.38 |    98.13 |  100.00 | 
+ℹ ------------------------------------------------------------------------
+ℹ end of coverage report

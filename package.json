@@ -1,0 +1,25 @@
+{
+  "name": "js-basics",
+  "version": "2.0.0",
+  "description": "Tested JavaScript fundamentals exercises extended with number theory, seeded randomness, and statistics.",
+  "private": true,
+  "license": "UNLICENSED",
+  "type": "module",
+  "exports": "./src/index.js",
+  "bin": {
+    "js-basics": "bin/js-basics.js"
+  },
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "lint": "biome check .",
+    "test": "node --disable-warning=ExperimentalWarning --test \"tests/**/*.test.js\"",
+    "test:coverage": "node --disable-warning=ExperimentalWarning --test --experimental-test-coverage --test-coverage-include=src/** \"tests/**/*.test.js\"",
+    "test:report": "node scripts/generate-test-report.js"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.6.8",
+    "fast-check": "4.11.0"
+  }
+}

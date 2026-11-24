@@ -1,0 +1,13 @@
+{
+  "generatedAt": "2026-11-24T01:52:55.787Z",
+  "runtime": "v24.22.0",
+  "platform": "linux",
+  "command": "npm run test:report",
+  "exitCode": 0,
+  "tests": 75,
+  "passed": 75,
+  "failed": 0,
+  "cancelled": 0,
+  "skipped": 0,
+  "todo": 0
+}
